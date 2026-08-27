@@ -1,4 +1,4 @@
-import { createServerClient, type CookieOptions } from "@supabase/ssr";
+﻿import { createServerClient, type CookieOptions } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 import { getSupabasePublishableKey, getSupabaseUrl, hasSupabaseEnv } from "@/lib/supabase/env";
 
@@ -8,12 +8,16 @@ type CookieToSet = {
   options: CookieOptions;
 };
 
+const LOGIN_PATH = "/login";
+const DASHBOARD_PATH = "/dashboard";
+
 export async function middleware(request: NextRequest) {
   let response = NextResponse.next({ request });
+  const pathname = request.nextUrl.pathname;
+  const isAdminRoute = pathname.startsWith("/admin");
 
   if (!hasSupabaseEnv()) {
-    response.headers.set("Cache-Control", "private, no-store");
-    return response;
+    return NextResponse.redirect(new URL(LOGIN_PATH, request.url));
   }
 
   const supabase = createServerClient(getSupabaseUrl()!, getSupabasePublishableKey()!, {
@@ -33,15 +37,20 @@ export async function middleware(request: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser();
 
-  const isLoginRoute = request.nextUrl.pathname.startsWith("/login");
-  const isHomeRoute = request.nextUrl.pathname === "/";
-
-  if (!user && !isLoginRoute && !isHomeRoute) {
-    return NextResponse.redirect(new URL("/login", request.url));
+  if (!user) {
+    return NextResponse.redirect(new URL(LOGIN_PATH, request.url));
   }
 
-  if (user && isLoginRoute) {
-    return NextResponse.redirect(new URL("/", request.url));
+  if (isAdminRoute) {
+    const { data: profile } = await supabase
+      .from("perfiles")
+      .select("rol, activo")
+      .eq("id", user.id)
+      .maybeSingle();
+
+    if (profile?.rol !== "ADMIN" || profile.activo !== true) {
+      return NextResponse.redirect(new URL(DASHBOARD_PATH, request.url));
+    }
   }
 
   response.headers.set("Cache-Control", "private, no-store");
@@ -49,5 +58,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/((?!_next/static|_next/image|favicon.ico|.*\\..*).*)"],
+  matcher: ["/dashboard/:path*", "/admin/:path*"],
 };

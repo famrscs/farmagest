@@ -1,4 +1,4 @@
-"use server";
+﻿"use server";
 
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
@@ -21,7 +21,7 @@ export async function signInAction(_prevState: AuthActionState, formData: FormDa
   }
 
   if (!hasSupabaseEnv()) {
-    redirect("/");
+    redirect("/dashboard");
   }
 
   const supabase = await createClient();
@@ -31,7 +31,7 @@ export async function signInAction(_prevState: AuthActionState, formData: FormDa
     return { ok: false, message: "No se pudo iniciar sesion. Revisa el email y la clave." };
   }
 
-  redirect("/");
+  redirect("/dashboard");
 }
 
 export async function signOutAction() {
@@ -124,3 +124,4 @@ export async function registrarUsuarioAction(formData: FormData) {
   revalidatePath("/");
   return;
 }
+
