@@ -1,8 +1,9 @@
-﻿"use server";
+"use server";
 
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { z } from "zod";
+import { isSaasOwnerEmail } from "@/lib/auth/saas-owner";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { hasSupabaseEnv } from "@/lib/supabase/env";
 import { createClient } from "@/lib/supabase/server";
@@ -31,7 +32,7 @@ export async function signInAction(_prevState: AuthActionState, formData: FormDa
     return { ok: false, message: "No se pudo iniciar sesion. Revisa el email y la clave." };
   }
 
-  redirect("/dashboard");
+  redirect(isSaasOwnerEmail(email) ? "/admin" : "/dashboard");
 }
 
 export async function signOutAction() {
@@ -76,13 +77,7 @@ export async function registrarUsuarioAction(formData: FormData) {
     return;
   }
 
-  const { data: currentProfile } = await supabase
-    .from("perfiles")
-    .select("rol, activo")
-    .eq("id", user.id)
-    .single();
-
-  if (currentProfile?.rol !== "ADMIN" || currentProfile.activo !== true) {
+  if (!isSaasOwnerEmail(user.email)) {
     return;
   }
 
@@ -124,4 +119,3 @@ export async function registrarUsuarioAction(formData: FormData) {
   revalidatePath("/");
   return;
 }
-

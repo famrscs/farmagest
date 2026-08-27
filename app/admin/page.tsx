@@ -1,6 +1,7 @@
-﻿import { redirect } from "next/navigation";
+import { redirect } from "next/navigation";
 import Link from "next/link";
 import { registrarUsuarioAction, signOutAction } from "@/app/actions/auth";
+import { isSaasOwnerEmail } from "@/lib/auth/saas-owner";
 import { getSupabaseSecretKey, hasSupabaseEnv } from "@/lib/supabase/env";
 import { createClient } from "@/lib/supabase/server";
 
@@ -30,13 +31,7 @@ export default async function AdminPage() {
     redirect("/login");
   }
 
-  const { data: currentProfile } = await supabase
-    .from("perfiles")
-    .select("rol, activo")
-    .eq("id", user.id)
-    .maybeSingle();
-
-  if (currentProfile?.rol !== "ADMIN" || currentProfile.activo !== true) {
+  if (!isSaasOwnerEmail(user.email)) {
     redirect("/dashboard");
   }
 
@@ -56,11 +51,11 @@ export default async function AdminPage() {
             <span className="brand-icon">+</span>
             <div>
               <strong>FarmaGest Admin</strong>
-              <p className="muted">Gestion de cuentas del SaaS</p>
+              <p className="muted">Consola privada del dueno del SaaS</p>
             </div>
           </div>
           <div className="header-actions">
-            <Link className="secondary-button" href="/dashboard">Dashboard</Link>
+            <Link className="secondary-button" href="/">Landing</Link>
             <form action={signOutAction}>
               <button className="secondary-button" type="submit">Cerrar sesion</button>
             </form>
@@ -77,7 +72,7 @@ export default async function AdminPage() {
           <form className="form-stack admin-form" action={adminReady ? registrarUsuarioAction : undefined}>
             <div>
               <h1>Crear cuenta de farmacia</h1>
-              <p className="muted">Registra usuarios nuevos y asigna permisos de acceso.</p>
+              <p className="muted">Crea cuentas para las farmacias clientes y sus operadores.</p>
             </div>
             <label>Nombre completo<input name="nombreCompleto" placeholder="Maria Perez" disabled={!adminReady} required /></label>
             <label>Email<input name="email" type="email" placeholder="usuario@farmacia.com" disabled={!adminReady} required /></label>

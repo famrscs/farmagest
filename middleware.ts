@@ -1,5 +1,6 @@
-﻿import { createServerClient, type CookieOptions } from "@supabase/ssr";
+import { createServerClient, type CookieOptions } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
+import { isSaasOwnerEmail } from "@/lib/auth/saas-owner";
 import { getSupabasePublishableKey, getSupabaseUrl, hasSupabaseEnv } from "@/lib/supabase/env";
 
 type CookieToSet = {
@@ -41,16 +42,8 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL(LOGIN_PATH, request.url));
   }
 
-  if (isAdminRoute) {
-    const { data: profile } = await supabase
-      .from("perfiles")
-      .select("rol, activo")
-      .eq("id", user.id)
-      .maybeSingle();
-
-    if (profile?.rol !== "ADMIN" || profile.activo !== true) {
-      return NextResponse.redirect(new URL(DASHBOARD_PATH, request.url));
-    }
+  if (isAdminRoute && !isSaasOwnerEmail(user.email)) {
+    return NextResponse.redirect(new URL(DASHBOARD_PATH, request.url));
   }
 
   response.headers.set("Cache-Control", "private, no-store");

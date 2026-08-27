@@ -1,10 +1,9 @@
-import Link from "next/link";
 import { actualizarUmbralAction, marcarAuditoriaRevisadaAction, registrarMermaAction } from "@/app/actions/audit";
-import { registrarUsuarioAction, signOutAction } from "@/app/actions/auth";
+import { signOutAction } from "@/app/actions/auth";
 import { registrarProductoAction } from "@/app/actions/inventory";
 import { SalesRegister } from "@/app/components/SalesRegister";
 import { DailyCashBox } from "@/app/components/DailyCashBox";
-import { getSupabaseSecretKey, hasSupabaseEnv } from "@/lib/supabase/env";
+import { hasSupabaseEnv } from "@/lib/supabase/env";
 import { createClient } from "@/lib/supabase/server";
 
 type ProductRow = {
@@ -240,9 +239,6 @@ function actionLabel(action: string) {
 }
 
 
-function hasAdminEnv() {
-  return Boolean(getSupabaseSecretKey());
-}
 
 async function loadDashboardData() {
   if (!hasSupabaseEnv()) {
@@ -349,7 +345,6 @@ async function loadDashboardData() {
 export default async function DashboardPage() {
   const { products, sales, profiles, audits, mermas, alertConfig, currentProfile, isDemoMode } = await loadDashboardData();
   const canManageUsers = currentProfile?.rol === "ADMIN" && currentProfile.activo;
-  const adminReady = hasAdminEnv();
   const activeSales = sales.filter((sale) => sale.estado === "CERRADA");
 
   const inventory = products.map((product) => {
@@ -458,7 +453,6 @@ export default async function DashboardPage() {
         <input className="tab-input" id="tab-stock" name="dashboardTab" type="radio" />
                 <input className="tab-input" id="tab-caja" name="dashboardTab" type="radio" />
         <input className="tab-input" id="tab-seguridad" name="dashboardTab" type="radio" />
-        <input className="tab-input" id="tab-admin" name="dashboardTab" type="radio" />
         <input className="tab-input" id="tab-registro" name="dashboardTab" type="radio" />
         <aside className="dashboard-sidebar">
           <div className="brand-row compact-brand">
@@ -473,7 +467,7 @@ export default async function DashboardPage() {
             <label className="nav-item nav-inventario" htmlFor="tab-inventario"><span>02</span> Medicamentos</label>
             <label className="nav-item nav-ventas" htmlFor="tab-ventas"><span>03</span> Ventas</label>
             <label className="nav-item nav-stock" htmlFor="tab-stock"><span>04</span> Por reponer</label>
-            <label className="nav-item nav-caja" htmlFor="tab-caja"><span>05</span> Caja del dia</label>{canManageUsers ? <label className="nav-item nav-seguridad" htmlFor="tab-seguridad"><span>06</span> Seguridad</label> : null}{canManageUsers ? <label className="nav-item nav-admin" htmlFor="tab-admin"><span>07</span> Admin</label> : null}
+            <label className="nav-item nav-caja" htmlFor="tab-caja"><span>05</span> Caja del dia</label>{canManageUsers ? <label className="nav-item nav-seguridad" htmlFor="tab-seguridad"><span>06</span> Seguridad</label> : null}
 
           </nav>
         </aside>
@@ -488,16 +482,9 @@ export default async function DashboardPage() {
             </div>
           </div>
 
-          {isDemoMode ? (
-            <div className="header-actions">
-              <span className="demo-pill">Modo prueba</span>
-              <Link className="secondary-button" href="/login">Iniciar sesion</Link>
-            </div>
-          ) : (
-            <form action={signOutAction}>
-              <button className="secondary-button" type="submit">Cerrar sesion</button>
-            </form>
-          )}
+          <form action={signOutAction}>
+            <button className="secondary-button" type="submit">Cerrar sesion</button>
+          </form>
         </header>
 
         {isDemoMode ? (
@@ -821,66 +808,6 @@ export default async function DashboardPage() {
                     )}
                   </tbody>
                 </table>
-              </div>
-            </article>
-          ) : null}
-          {canManageUsers ? (
-            <article className="panel dashboard-view dashboard-view-admin" id="admin-usuarios">
-              <div className="panel-head">
-                <div>
-                  <h2>Admin</h2>
-                  <p className="muted">Crea usuarios nuevos y asigna permisos para operar la farmacia.</p>
-                </div>
-              </div>
-
-              {!adminReady ? (
-                <div className="demo-banner admin-warning">
-                  Falta SUPABASE_SERVICE_ROLE_KEY en el servidor. Agrega esa variable para crear cuentas reales desde este panel.
-                </div>
-              ) : null}
-
-              <div className="admin-grid">
-                <form className="form-stack admin-form" action={isDemoMode || !adminReady ? undefined : registrarUsuarioAction}>
-                  <label>Nombre completo<input name="nombreCompleto" placeholder="Maria Perez" disabled={isDemoMode || !adminReady} required /></label>
-                  <label>Email<input name="email" type="email" placeholder="usuario@farmacia.com" disabled={isDemoMode || !adminReady} required /></label>
-                  <div className="form-row">
-                    <label>Clave temporal<input name="password" type="password" minLength={8} disabled={isDemoMode || !adminReady} required /></label>
-                    <label>Rol
-                      <select name="rol" disabled={isDemoMode || !adminReady} required>
-                        <option value="CAJERO">Cajero</option>
-                        <option value="ADMIN">Administrador</option>
-                      </select>
-                    </label>
-                  </div>
-                  <button className="primary-button" type="submit" disabled={isDemoMode || !adminReady}>Crear cuenta</button>
-                </form>
-
-                <div className="table-wrap admin-users-table">
-                  <table>
-                    <thead>
-                      <tr>
-                        <th>Usuario</th>
-                        <th>Rol</th>
-                        <th>Estado</th>
-                        <th>Alta</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {profiles.length ? profiles.map((profile) => (
-                        <tr key={profile.id}>
-                          <td><strong>{profile.nombre_completo}</strong></td>
-                          <td>{profile.rol === "ADMIN" ? "Administrador" : "Cajero"}</td>
-                          <td><span className={profile.activo ? "status ok" : "status danger"}>{profile.activo ? "Activo" : "Inactivo"}</span></td>
-                          <td>{new Intl.DateTimeFormat("es-BO", { timeZone: "America/La_Paz", day: "2-digit", month: "short", year: "numeric" }).format(new Date(profile.fecha_creacion))}</td>
-                        </tr>
-                      )) : (
-                        <tr>
-                          <td colSpan={4}>No hay usuarios para mostrar.</td>
-                        </tr>
-                      )}
-                    </tbody>
-                  </table>
-                </div>
               </div>
             </article>
           ) : null}
