@@ -3,6 +3,7 @@ import { registrarUsuarioAction, signOutAction } from "@/app/actions/auth";
 import { registrarProductoAction } from "@/app/actions/inventory";
 import { SalesRegister } from "@/app/components/SalesRegister";
 import { DailyCashBox } from "@/app/components/DailyCashBox";
+import { getSupabaseSecretKey, hasSupabaseEnv } from "@/lib/supabase/env";
 import { createClient } from "@/lib/supabase/server";
 
 type ProductRow = {
@@ -237,12 +238,9 @@ function actionLabel(action: string) {
   return labels[action] ?? action;
 }
 
-function hasSupabaseEnv() {
-  return Boolean(process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY);
-}
 
 function hasAdminEnv() {
-  return Boolean(process.env.SUPABASE_SERVICE_ROLE_KEY);
+  return Boolean(getSupabaseSecretKey());
 }
 
 async function loadDashboardData() {
@@ -885,6 +883,7 @@ export default async function DashboardPage() {
     </main>
   );
 }
+
 
 
 
