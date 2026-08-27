@@ -1,0 +1,506 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FarmaGest | Sistema SaaS</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230b5cff'/%3E%3Cpath d='M15 8h2v7h7v2h-7v7h-2v-7H8v-2h7z' fill='white'/%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <section class="home-screen" id="homeScreen">
+      <header class="home-topbar">
+        <div class="home-brand">
+          <span class="brand-icon">+</span>
+          <div>
+            <strong>FarmaGest</strong>
+            <small>SaaS para farmacias</small>
+          </div>
+        </div>
+        <nav class="home-menu" aria-label="Menu del sitio">
+          <a href="#homeScreen">Inicio</a>
+          <a href="#homeFeatures">Servicios</a>
+          <a href="#homeAbout">Nosotros</a>
+          <a href="#homeContact">Contacto</a>
+        </nav>
+        <div class="home-nav-actions">
+          <button class="secondary-action" id="homeRegisterTop" type="button">Registrarse</button>
+          <button class="secondary-action" id="homeLogin" type="button">Entrar</button>
+        </div>
+      </header>
+
+      <main class="home-main">
+        <section class="home-hero">
+          <p class="home-tag">#GestionFarmaceutica</p>
+          <h1>Controlar tu farmacia tiene beneficios efectivos.</h1>
+          <p>Convertimos tus problemas de stock, ventas, vencimientos y caja en una operacion simple para farmacias de Bolivia.</p>
+          <div class="home-actions">
+            <button class="primary-action" id="homeRegister" type="button">Registrarse</button>
+            <a class="text-action" href="#homeFeatures">Ver funciones</a>
+          </div>
+        </section>
+
+        <section class="home-preview" aria-label="Enfermero usando FarmaGest en farmacia">
+          <img src="assets/hero-farmagest-pharmacy.png" alt="Enfermero en una farmacia usando un sistema de gestion farmaceutica" />
+          <div class="hero-stat-card">
+            <span>Operacion diaria</span>
+            <strong>Ventas, stock y caja</strong>
+            <small>Efectivo, QR, lotes y vencimientos controlados.</small>
+          </div>
+        </section>
+      </main>
+
+      <section class="home-features" id="homeFeatures">
+        <article>
+          <span>01</span>
+          <h2>Inventario por lote</h2>
+          <p>Registra producto, laboratorio, presentacion, unidad de venta, stock minimo y vencimiento.</p>
+        </article>
+        <article>
+          <span>02</span>
+          <h2>Ventas POS</h2>
+          <p>Vende por unidades, tabletas o capsulas con pagos por efectivo y QR.</p>
+        </article>
+        <article>
+          <span>03</span>
+          <h2>Alertas operativas</h2>
+          <p>Detecta stock bajo, productos vencidos y lotes que deben retirarse.</p>
+        </article>
+        <article>
+          <span>04</span>
+          <h2>Arqueo de caja</h2>
+          <p>Calcula efectivo esperado, ventas QR y diferencias del cierre diario.</p>
+        </article>
+      </section>
+
+      <section class="home-about" id="homeAbout">
+        <div class="about-visual">
+          <img src="assets/team-farmagest-pharmacy.png" alt="Equipo farmaceutico revisando inventario con FarmaGest" />
+        </div>
+        <div class="about-copy">
+          <span>Equipo</span>
+          <h2>Flexibilidad, compromiso y experiencia farmaceutica.</h2>
+          <p>FarmaGest esta pensado para farmacias que necesitan control real sin complicar el trabajo diario del mostrador. Unimos inventario, ventas, vencimientos, laboratorio, pagos QR y arqueo para que cada decision salga de datos claros.</p>
+          <p>El sistema acompana la operacion de farmacias pequenas y medianas con una experiencia simple para cajeros, administradores y propietarios.</p>
+          <button class="primary-action" id="aboutRegister" type="button">Sobre nosotros</button>
+        </div>
+      </section>
+
+      <section class="home-sectors" id="homeSectors">
+        <!-- Top Wave Divider (White curve creating the dip for the photo) -->
+        <div class="sectors-top-divider">
+          <svg viewBox="0 0 1440 100" fill="none" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0,0 L1440,0 L1440,40 C1100,20 900,95 680,45 C480,-5 240,20 0,40 Z" fill="#ffffff" />
+          </svg>
+        </div>
+
+        <!-- Decorative Translucent Circles from Reference -->
+        <div class="sectors-circle-decor decor-right"></div>
+        <div class="sectors-circle-decor decor-left"></div>
+
+        <div class="sectors-inner-wrap">
+          <!-- Top Area: Left Copy + Right Pop-out Photo -->
+          <div class="sectors-top-grid">
+            <div class="sectors-copy-area">
+              <span class="sectors-eyebrow-text">Rubros</span>
+              <h2 class="sectors-main-title">Personal especializado<br>para todos los rubros</h2>
+              <button class="sectors-contact-btn" id="sectorsRegister" type="button">
+                <span>Contactanos</span>
+                <span class="btn-arrow">→</span>
+              </button>
+            </div>
+
+            <div class="sectors-photo-col">
+              <div class="sectors-photo-card">
+                <img src="assets/sectors-farmagest-pharmacy.png" alt="Personal farmacéutico especializado" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom Area: 4 Centered Columns matching reference -->
+          <div class="sectors-bottom-row">
+            <div class="sector-badge-item">
+              <div class="sector-white-circle">
+                <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="m2 7 4.41-4.41A2 2 0 0 1 7.83 2h8.34a2 2 0 0 1 1.42.59L22 7"/>
+                  <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
+                  <path d="M15 22v-4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v4"/>
+                  <path d="M2 7h20"/>
+                  <path d="M22 7a3 3 0 0 1-3 3 3 3 0 0 1-3-3 3 3 0 0 1-3 3 3 3 0 0 1-3-3 3 3 0 0 1-3 3 3 3 0 0 1-3-3 3 3 0 0 1-3 3 3 3 0 0 1-3-3"/>
+                </svg>
+              </div>
+              <h3>Comercios &<br>Farmacias</h3>
+              <p>Ventas por unidad, tabletas y cobro QR.</p>
+            </div>
+
+            <div class="sector-badge-item">
+              <div class="sector-white-circle">
+                <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="3" width="18" height="18" rx="2"/>
+                  <line x1="3" y1="9" x2="21" y2="9"/>
+                  <line x1="3" y1="15" x2="21" y2="15"/>
+                  <line x1="12" y1="3" x2="12" y2="21"/>
+                  <path d="M6 6h2M16 6h2M6 12h2M16 12h2M6 18h2M16 18h2"/>
+                </svg>
+              </div>
+              <h3>Depósitos,<br>almacenes y otros</h3>
+              <p>Control por lote, vencimiento y reposición.</p>
+            </div>
+
+            <div class="sector-badge-item">
+              <div class="sector-white-circle">
+                <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <rect width="18" height="14" x="3" y="7" rx="3"/>
+                  <path d="M9 7V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v3"/>
+                  <circle cx="12" cy="14" r="3"/>
+                  <line x1="12" y1="12.5" x2="12" y2="15.5"/>
+                  <line x1="10.5" y1="14" x2="13.5" y2="14"/>
+                </svg>
+              </div>
+              <h3>Sector salud</h3>
+              <p>Farmacias, clínicas y centros de salud.</p>
+            </div>
+
+            <div class="sector-badge-item">
+              <div class="sector-white-circle">
+                <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 2a4 4 0 0 0-4 4c0 1.1.45 2.1 1.18 2.83L6 11l2 11h8l2-11-3.18-2.17C15.55 8.1 16 7.1 16 6a4 4 0 0 0-4-4Z"/>
+                  <path d="M12 9v13"/>
+                </svg>
+              </div>
+              <h3>Cadenas &<br>Retail</h3>
+              <p>Locales físicos, caja y multi-sucursal.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom Wave Divider (White curve closing the bottom) -->
+        <div class="sectors-bottom-divider">
+          <svg viewBox="0 0 1440 90" fill="none" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0,90 L1440,90 L1440,35 C1160,75 880,20 600,50 C320,80 140,25 0,45 Z" fill="#ffffff" />
+          </svg>
+        </div>
+      </section>
+
+      <section class="home-contact" id="homeContact">
+        <div class="home-contact-content">
+          <div class="home-contact-badge">
+            <span class="pulse-dot"></span>
+            <span>Implementación Inmediata</span>
+          </div>
+          <h3>¿Listo para modernizar la gestión de tu farmacia?</h3>
+          <p>Comienza hoy mismo con control de stock por lote, ventas rápidas y arqueo de caja automático.</p>
+        </div>
+        <button class="primary-action-glow" id="homeContactRegister" type="button">
+          <span>Solicitar Registro</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </button>
+      </section>
+    </section>
+
+    <section class="register-screen hidden" id="registerScreen">
+      <div class="register-card">
+        <button class="text-action register-back" id="registerBackHome" type="button">Volver al inicio</button>
+        <div class="login-copy">
+          <p class="eyebrow">Registro de farmacia</p>
+          <h1>Completa tus datos y elige tu plan.</h1>
+          <p>Al enviar, se abrira WhatsApp con toda la informacion lista para solicitar la activacion del sistema.</p>
+        </div>
+
+        <form class="register-form" id="registerForm">
+          <div class="form-grid">
+            <label>Nombre completo<input name="fullName" required placeholder="Ej. Ana Sandoval" /></label>
+            <label>Correo electronico<input name="email" type="email" required placeholder="correo@ejemplo.com" /></label>
+          </div>
+          <div class="form-grid">
+            <label>Celular<input name="phone" type="tel" required placeholder="Ej. 70123456" /></label>
+            <label>Nombre de la farmacia<input name="clinicName" required placeholder="Ej. Farmacia Central" /></label>
+          </div>
+          <div class="form-grid">
+            <label>Ciudad<input name="city" required placeholder="Ej. La Paz" /></label>
+            <label>Plan
+              <select name="plan" required>
+                <option value="">Elige un plan</option>
+                <option value="1 mes - Bs. 60">1 mes - Bs. 60</option>
+                <option value="3 meses - Bs. 150">3 meses - Bs. 150</option>
+                <option value="12 meses - Bs. 600">12 meses - Bs. 600</option>
+              </select>
+            </label>
+          </div>
+          <button class="primary-action wide" type="submit">Enviar registro por WhatsApp</button>
+        </form>
+      </div>
+    </section>
+
+    <section class="login-screen hidden" id="loginScreen">
+      <div class="login-card">
+        <button class="login-brand brand-link" id="loginBrandHome" type="button">
+          <span class="brand-icon">+</span>
+          <div>
+            <strong>FarmaGest</strong>
+            <small>Sistema de farmacia</small>
+          </div>
+        </button>
+        <div class="login-copy">
+          <p class="eyebrow">Acceso seguro</p>
+          <h1>Iniciar sesion</h1>
+          <p>Ingresa al panel para controlar inventario, ventas, vencimientos y arqueo de caja.</p>
+        </div>
+        <form class="login-form" id="loginForm">
+          <label>Email<input name="email" type="email" value="admin@farmagest.bo" required /></label>
+          <label>Clave<input name="password" type="password" value="admin123" required /></label>
+          <button class="primary-action wide" type="submit">Entrar al sistema</button>
+        </form>
+        <button class="text-action login-back" id="backHome" type="button">Volver al inicio</button>
+        <div class="demo-access">
+          <span>Demo</span>
+          <strong>admin@farmagest.bo</strong>
+          <small>Clave: admin123</small>
+        </div>
+      </div>
+    </section>
+
+    <main class="app locked" id="appShell">
+      <aside class="sidebar">
+        <div class="brand">
+          <span class="brand-icon">+</span>
+          <div>
+            <strong>FarmaGest</strong>
+            <small>Farmacia Bolivia</small>
+          </div>
+        </div>
+
+        <nav class="nav" aria-label="Menu principal">
+          <button class="nav-item active" data-view="dashboard" type="button"><span>01</span> Dashboard</button>
+          <button class="nav-item" data-view="inventario" type="button"><span>02</span> Inventario</button>
+          <button class="nav-item" data-view="ventas" type="button"><span>03</span> Ventas POS</button>
+          <button class="nav-item" data-view="vencimientos" type="button"><span>04</span> Vencimientos</button>
+          <button class="nav-item" data-view="arqueo" type="button"><span>05</span> Arqueo</button>
+        </nav>
+
+        <div class="session-card">
+          <small>Turno activo</small>
+          <strong>Ana Sandoval</strong>
+          <span>Caja 01 abierta</span>
+          <button id="logoutButton" type="button">Cerrar sesion</button>
+        </div>
+      </aside>
+
+      <section class="workspace">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Panel administrativo</p>
+            <h1 id="pageTitle">Dashboard</h1>
+          </div>
+          <label class="global-search">
+            <span>Buscar</span>
+            <input id="globalSearch" type="search" placeholder="Medicamento, lote, venta..." />
+          </label>
+          <button class="primary-action" id="quickSale" type="button">Nueva venta</button>
+        </header>
+
+        <section class="view active" id="dashboard">
+          <div class="metrics">
+            <article class="metric"><span class="metric-label">Productos activos</span><strong id="metricProducts">0</strong><small>Catalogo disponible</small></article>
+            <article class="metric"><span class="metric-label">Stock bajo</span><strong id="metricLowStock">0</strong><small>Requieren reposicion</small></article>
+            <article class="metric"><span class="metric-label">Ventas hoy</span><strong id="metricSales">0</strong><small>Tickets generados</small></article>
+            <article class="metric"><span class="metric-label">Ingresos hoy</span><strong id="metricRevenue">Bs 0</strong><small>Efectivo y QR</small></article>
+          </div>
+
+          <section class="dashboard-grid">
+            <article class="panel chart-panel">
+              <div class="panel-head">
+                <div>
+                  <h2>Movimiento mensual</h2>
+                  <p>Ventas contra alertas de vencimiento</p>
+                </div>
+                <select id="chartMode" aria-label="Periodo de grafica">
+                  <option>Este ano</option>
+                  <option>Ultimos 6 meses</option>
+                </select>
+              </div>
+              <svg class="chart" viewBox="0 0 760 310" role="img" aria-label="Grafica de movimiento mensual">
+                <g class="grid-lines">
+                  <line x1="50" y1="42" x2="730" y2="42" />
+                  <line x1="50" y1="102" x2="730" y2="102" />
+                  <line x1="50" y1="162" x2="730" y2="162" />
+                  <line x1="50" y1="222" x2="730" y2="222" />
+                </g>
+                <g class="axis">
+                  <text x="18" y="47">300</text><text x="18" y="107">200</text>
+                  <text x="22" y="167">100</text><text x="32" y="227">0</text>
+                </g>
+                <path class="line line-blue" d="M55 180 C110 118 152 115 204 148 C255 180 292 72 346 78 C405 86 416 198 480 190 C540 182 566 92 622 96 C676 100 692 156 730 130" />
+                <path class="line line-cyan" d="M55 92 C110 130 158 156 210 120 C265 82 304 130 350 174 C395 216 444 128 500 112 C558 96 588 184 642 192 C682 198 704 150 730 164" />
+                <line class="marker" x1="420" y1="74" x2="420" y2="240" />
+                <circle class="point" cx="420" cy="186" r="8" />
+                <text class="point-value" x="392" y="66">135</text>
+                <text class="point-label" x="384" y="84">Jul 2026</text>
+                <g class="months">
+                  <text x="62" y="282">Ene</text><text x="122" y="282">Feb</text><text x="182" y="282">Mar</text>
+                  <text x="242" y="282">Abr</text><text x="302" y="282">May</text><text x="362" y="282">Jun</text>
+                  <text x="422" y="282">Jul</text><text x="482" y="282">Ago</text><text x="542" y="282">Sep</text>
+                  <text x="602" y="282">Oct</text><text x="662" y="282">Nov</text><text x="712" y="282">Dic</text>
+                </g>
+              </svg>
+              <div class="legend"><span><i class="blue-dot"></i>Ventas</span><span><i class="cyan-dot"></i>Vencimientos</span></div>
+            </article>
+
+            <aside class="focus-panel">
+              <div class="panel-head invert">
+                <div><h2>Producto critico</h2><p>Alta rotacion</p></div>
+                <span class="pill light">Hoy</span>
+              </div>
+              <div class="bottle"><span></span></div>
+              <h3 id="criticalName">Amoxicilina 500 mg</h3>
+              <p id="criticalDetail">Caja x 21 capsulas</p>
+              <div class="mini-stats">
+                <span><strong id="criticalDays">12</strong>Dias stock</span>
+                <span><strong id="criticalUnits">0</strong>Unidades</span>
+                <span><strong id="criticalPrice">Bs 0</strong>Precio</span>
+              </div>
+            </aside>
+
+            <article class="panel session-panel">
+              <div class="panel-head">
+                <div>
+                  <h2>Sesion</h2>
+                  <p>Acceso activo al sistema</p>
+                </div>
+                <span class="pill">Admin</span>
+              </div>
+              <div class="session-details">
+                <div><span>Usuario</span><strong>Ana Sandoval</strong></div>
+                <div><span>Caja</span><strong>01 abierta</strong></div>
+                <div><span>Rol</span><strong>Administrador</strong></div>
+              </div>
+              <button class="secondary-action wide logout-danger" id="dashboardLogout" type="button">Cerrar sesion</button>
+            </article>
+
+            <article class="panel table-panel">
+              <div class="panel-head"><div><h2>Alertas de vencimiento</h2><p>Lotes que necesitan decision</p></div></div>
+              <div class="table-wrap">
+                <table>
+                  <thead><tr><th>Producto</th><th>Lote</th><th>Vence</th><th>Stock</th><th>Estado</th></tr></thead>
+                  <tbody id="dashboardExpiry"></tbody>
+                </table>
+              </div>
+            </article>
+
+            <article class="panel table-panel">
+              <div class="panel-head"><div><h2>Ventas recientes</h2><p>Ultimos movimientos de caja</p></div></div>
+              <div class="table-wrap">
+                <table>
+                  <thead><tr><th>Ticket</th><th>Pago</th><th>Total</th><th>Cajero</th><th>Estado</th></tr></thead>
+                  <tbody id="dashboardSales"></tbody>
+                </table>
+              </div>
+            </article>
+          </section>
+        </section>
+
+        <section class="view" id="inventario">
+          <div class="split-layout">
+            <article class="panel">
+              <div class="panel-head">
+                <div><h2>Inventario</h2><p>Control por unidad, envase y lote</p></div>
+                <button class="secondary-action" id="restockDemo" type="button">Reponer demo</button>
+              </div>
+              <div class="table-wrap">
+                <table>
+                  <thead><tr><th>Codigo</th><th>Producto</th><th>Laboratorio</th><th>Unidad venta</th><th>Stock</th><th>Minimo</th><th>Precio unit.</th></tr></thead>
+                  <tbody id="inventoryRows"></tbody>
+                </table>
+              </div>
+            </article>
+            <article class="panel form-panel">
+              <h2>Nuevo producto</h2>
+              <form id="productForm">
+                <label>Nombre<input name="name" required placeholder="Ej. Paracetamol 500 mg" /></label>
+                <label>Presentacion<input name="presentation" required placeholder="Caja x 20 tabletas" /></label>
+                <label>Laboratorio / industria<input name="laboratory" required placeholder="Ej. Inti, Bago, COFAR" /></label>
+                <label>Unidad de venta
+                  <select name="unit" required>
+                    <option value="capsulas">Capsulas</option>
+                    <option value="tabletas">Tabletas</option>
+                    <option value="comprimidos">Comprimidos</option>
+                    <option value="sobres">Sobres</option>
+                    <option value="unidades">Unidades</option>
+                    <option value="frascos">Frascos</option>
+                  </select>
+                </label>
+                <div class="form-grid">
+                  <label>Stock<input name="stock" type="number" min="1" value="10" required /></label>
+                  <label>Stock minimo<input name="min" type="number" min="0" value="8" required /></label>
+                </div>
+                <div class="form-grid">
+                  <label>Precio unit. Bs<input name="price" type="number" min="0" step="0.01" value="1.50" required /></label>
+                  <label>Lote<input name="lot" maxlength="40" required placeholder="Ej. LOT-001" /></label>
+                </div>
+                <label>Fecha de vencimiento<input name="expiry" type="date" required /></label>
+                <button class="primary-action wide" type="submit">Agregar</button>
+              </form>
+            </article>
+          </div>
+        </section>
+
+        <section class="view" id="ventas">
+          <div class="pos-grid">
+            <article class="panel">
+              <div class="panel-head"><div><h2>Punto de venta</h2><p>Busqueda manual, sin codigo de barras</p></div></div>
+              <div class="product-list" id="posProducts"></div>
+            </article>
+            <aside class="panel cart-panel">
+              <div class="panel-head"><div><h2>Carrito</h2><p id="cartCount">0 items</p></div></div>
+              <div class="cart-list" id="cartRows"></div>
+              <div class="cart-total"><span>Total</span><strong id="cartTotal">Bs 0</strong></div>
+              <div class="pay-actions">
+                <button class="secondary-action" data-pay="QR" type="button">QR</button>
+                <button class="primary-action" data-pay="EFECTIVO" type="button">Efectivo</button>
+              </div>
+            </aside>
+          </div>
+        </section>
+
+        <section class="view" id="vencimientos">
+          <article class="panel">
+            <div class="panel-head"><div><h2>Vencimientos</h2><p>Priorizado por dias restantes y cantidad</p></div><span class="pill">30 dias</span></div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Producto</th><th>Lote</th><th>Fecha</th><th>Dias</th><th>Accion</th></tr></thead>
+                <tbody id="expiryRows"></tbody>
+              </table>
+            </div>
+          </article>
+        </section>
+
+        <section class="view" id="arqueo">
+          <div class="split-layout">
+            <article class="panel form-panel">
+              <h2>Cierre de caja</h2>
+              <form id="cashForm">
+                <label>Fondo inicial<input name="opening" type="number" value="300" step="0.5" /></label>
+                <label>Gastos del dia<input name="expenses" type="number" value="40" step="0.5" /></label>
+                <label>Retiros de caja<input name="withdrawals" type="number" value="0" step="0.5" /></label>
+                <label>Efectivo contado<input name="counted" id="countedCash" type="number" step="0.5" placeholder="Se sugiere el efectivo esperado" /></label>
+                <button class="primary-action wide" type="submit">Calcular arqueo</button>
+              </form>
+            </article>
+            <article class="panel result-panel">
+              <h2>Resultado</h2>
+              <div class="cash-summary" id="cashSummary"></div>
+            </article>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="app.js"></script>
+  </body>
+</html>
