@@ -1,4 +1,5 @@
-﻿import { actualizarUmbralAction, marcarAuditoriaRevisadaAction, registrarMermaAction } from "@/app/actions/audit";
+import Link from "next/link";
+import { actualizarUmbralAction, marcarAuditoriaRevisadaAction, registrarMermaAction } from "@/app/actions/audit";
 import { registrarUsuarioAction, signOutAction } from "@/app/actions/auth";
 import { registrarProductoAction } from "@/app/actions/inventory";
 import { SalesRegister } from "@/app/components/SalesRegister";
@@ -250,9 +251,22 @@ async function loadDashboardData() {
 
   const supabase = await createClient();
 
-    const {
+  const {
     data: { user },
   } = await supabase.auth.getUser();
+
+  if (!user) {
+    return {
+      products: demoProducts,
+      sales: demoSales,
+      profiles: [] as ProfileRow[],
+      audits: [] as AuditRow[],
+      mermas: [] as MermaRow[],
+      alertConfig: [] as AlertConfigRow[],
+      currentProfile: null as ProfileRow | null,
+      isDemoMode: true,
+    };
+  }
 
   const [{ data: productsData }, { data: salesData }, { data: profilesData }, { data: auditsData }, { data: mermasData }, { data: alertConfigData }, { data: currentProfileData }] = await Promise.all([
     supabase
@@ -475,7 +489,10 @@ export default async function DashboardPage() {
           </div>
 
           {isDemoMode ? (
-            <span className="demo-pill">Modo prueba</span>
+            <div className="header-actions">
+              <span className="demo-pill">Modo prueba</span>
+              <Link className="secondary-button" href="/login">Iniciar sesion</Link>
+            </div>
           ) : (
             <form action={signOutAction}>
               <button className="secondary-button" type="submit">Cerrar sesion</button>
@@ -883,15 +900,3 @@ export default async function DashboardPage() {
     </main>
   );
 }
-
-
-
-
-
-
-
-
-
-
-
-

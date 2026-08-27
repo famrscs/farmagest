@@ -1,4 +1,4 @@
-﻿import { createServerClient, type CookieOptions } from "@supabase/ssr";
+import { createServerClient, type CookieOptions } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 import { getSupabasePublishableKey, getSupabaseUrl, hasSupabaseEnv } from "@/lib/supabase/env";
 
@@ -34,8 +34,9 @@ export async function middleware(request: NextRequest) {
   } = await supabase.auth.getUser();
 
   const isLoginRoute = request.nextUrl.pathname.startsWith("/login");
+  const isHomeRoute = request.nextUrl.pathname === "/";
 
-  if (!user && !isLoginRoute) {
+  if (!user && !isLoginRoute && !isHomeRoute) {
     return NextResponse.redirect(new URL("/login", request.url));
   }
 

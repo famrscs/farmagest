@@ -879,3 +879,11 @@ td strong,
   border: 1px solid #fecdd3;
   color: #be123c;
 }
+
+.header-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
