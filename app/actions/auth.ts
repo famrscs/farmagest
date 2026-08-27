@@ -1,4 +1,4 @@
-﻿"use server";
+"use server";
 
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
@@ -7,8 +7,12 @@ import { createAdminClient } from "@/lib/supabase/admin";
 import { hasSupabaseEnv } from "@/lib/supabase/env";
 import { createClient } from "@/lib/supabase/server";
 
+export type AuthActionState = {
+  ok: boolean;
+  message: string;
+};
 
-export async function signInAction(formData: FormData) {
+export async function signInAction(_prevState: AuthActionState, formData: FormData): Promise<AuthActionState> {
   const email = String(formData.get("email") ?? "").trim().toLowerCase();
   const password = String(formData.get("password") ?? "");
 
@@ -24,7 +28,7 @@ export async function signInAction(formData: FormData) {
   const { error } = await supabase.auth.signInWithPassword({ email, password });
 
   if (error) {
-    return { ok: false, message: "Credenciales invalidas." };
+    return { ok: false, message: "No se pudo iniciar sesion. Revisa el email y la clave." };
   }
 
   redirect("/");
@@ -120,5 +124,3 @@ export async function registrarUsuarioAction(formData: FormData) {
   revalidatePath("/");
   return;
 }
-
-

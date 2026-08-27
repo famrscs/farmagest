@@ -1,11 +1,6 @@
-import { signInAction } from "@/app/actions/auth";
+import { LoginForm } from "./LoginForm";
 
 export default function LoginPage() {
-  async function action(formData: FormData) {
-    "use server";
-    await signInAction(formData);
-  }
-
   return (
     <main className="auth-page">
       <section className="auth-card">
@@ -18,19 +13,9 @@ export default function LoginPage() {
         </div>
 
         <h1>Iniciar sesion</h1>
-        <p className="muted">Sin Supabase configurado, cualquier email y clave abren el modo demo local.</p>
+        <p className="muted">Ingresa con una cuenta registrada en Supabase.</p>
 
-        <form action={action} className="form-stack">
-          <label>
-            Email
-            <input name="email" type="email" required />
-          </label>
-          <label>
-            Clave
-            <input name="password" type="password" required />
-          </label>
-          <button className="primary-button" type="submit">Entrar</button>
-        </form>
+        <LoginForm />
       </section>
     </main>
   );

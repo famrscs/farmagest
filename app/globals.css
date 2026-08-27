@@ -1,4 +1,4 @@
-﻿:root {
+:root {
   --blue: #0b5cff;
   --blue-strong: #0047d9;
   --bg: #f6f9fc;
@@ -860,3 +860,22 @@ td strong,
 
 
 
+
+.primary-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+.form-message {
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  margin: 0;
+  padding: 10px 12px;
+}
+
+.form-message.error {
+  background: #fff1f2;
+  border: 1px solid #fecdd3;
+  color: #be123c;
+}
